@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manager Building | Residencia Premium</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Manager Building Concept</p>
+        <h1>Residencia Top · Gestión sin contacto humano</h1>
+      </div>
+      <button id="logoutBtn" class="ghost" hidden>Cerrar sesión</button>
+    </header>
+
+    <main>
+      <section id="loginPanel" class="panel login-panel">
+        <h2>Ingresa con Google</h2>
+        <p>
+          Usa tu cuenta Google para acceder al panel principal del edificio y gestionar
+          reservas, mantenimiento, visitantes y más.
+        </p>
+        <div id="g_id_onload"
+             data-client_id="YOUR_GOOGLE_CLIENT_ID"
+             data-callback="onGoogleCredential"
+             data-auto_prompt="false"></div>
+        <div class="g_id_signin"
+             data-type="standard"
+             data-size="large"
+             data-theme="outline"
+             data-text="signin_with"
+             data-shape="rectangular"></div>
+        <button id="demoLogin" class="primary">Entrar en modo demo</button>
+        <small>
+          Para habilitar el acceso real, cambia <code>YOUR_GOOGLE_CLIENT_ID</code> por tu Client ID.
+        </small>
+      </section>
+
+      <section id="dashboard" class="dashboard" hidden>
+        <div class="welcome-card panel">
+          <h2 id="welcomeTitle">Bienvenido/a</h2>
+          <p>Desde aquí puedes administrar todos los servicios de tu residencia.</p>
+        </div>
+
+        <div class="grid">
+          <article class="panel">
+            <h3>Reserva de instalaciones</h3>
+            <form id="bookingForm" class="stacked-form">
+              <label>
+                Instalación
+                <select name="facility" required>
+                  <option value="GYM">GYM</option>
+                  <option value="Grill">Grill</option>
+                  <option value="Cinema">Cinema</option>
+                </select>
+              </label>
+              <label>
+                Fecha
+                <input type="date" name="date" required />
+              </label>
+              <label>
+                Horario
+                <input type="time" name="time" required />
+              </label>
+              <button class="primary" type="submit">Reservar</button>
+            </form>
+            <ul id="bookingList" class="bullet-list"></ul>
+          </article>
+
+          <article class="panel">
+            <h3>Cita de mantenimiento</h3>
+            <form id="maintenanceForm" class="stacked-form">
+              <label>
+                Tipo de incidencia
+                <input name="issue" placeholder="Ej. fuga de agua" required />
+              </label>
+              <label>
+                Ubicación
+                <input name="location" placeholder="Ej. Apto 1802" required />
+              </label>
+              <button class="primary" type="submit">Solicitar cita</button>
+            </form>
+            <ul id="maintenanceList" class="bullet-list"></ul>
+          </article>
+
+          <article class="panel">
+            <h3>Novedades de la comunidad</h3>
+            <ul class="news-list" id="newsList"></ul>
+          </article>
+
+          <article class="panel">
+            <h3>Acceso de visitantes por QR</h3>
+            <form id="visitorForm" class="stacked-form">
+              <label>
+                Nombre del visitante
+                <input name="visitor" required />
+              </label>
+              <label>
+                Fecha de acceso
+                <input type="date" name="visitDate" required />
+              </label>
+              <button class="primary" type="submit">Generar QR</button>
+            </form>
+            <div class="qr-box" id="qrBox" hidden>
+              <img id="qrImg" alt="QR de acceso" />
+              <p id="qrText"></p>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h3>Estado de cuenta</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Concepto</th>
+                  <th>Estado</th>
+                  <th>Monto</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Administración - Abril</td><td>Pagado</td><td>$350</td></tr>
+                <tr><td>Parqueadero</td><td>Pendiente</td><td>$70</td></tr>
+                <tr><td>Fondo de reservas</td><td>Pagado</td><td>$45</td></tr>
+              </tbody>
+            </table>
+          </article>
+
+          <article class="panel">
+            <h3>Servicios disponibles</h3>
+            <div class="service-tags">
+              <span>Mudanza</span>
+              <span>Servicios de limpieza</span>
+              <span>Servicios de comida</span>
+              <span>Entretenimiento</span>
+              <span>Instalación de internet</span>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
